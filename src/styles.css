@@ -1,0 +1,135 @@
+:root {
+    --blue: #0275d8;
+    --green: #22bb33;
+    --red: #FF3333;
+    --red-salsa: #b32828;
+    --apple: #61c95e;
+    --light-gray: #bebebe;
+    --gray: #7a7a7a;
+    --dark-gray: #2c2c2c;
+    --lapis-lazuli: #1e6091ff;
+    --yale-blue: #184e77ff;
+}
+
+html {
+    line-height: 1.5;
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    margin: 0;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+/* ------------------------------------------------------------------------------------------ // globals // */ 
+
+.contenedor {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.seccion {
+    padding: 1.6rem 0;
+}
+
+.seccion h2 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------------------------------ // format // */ 
+
+input {
+    transition: border-color .2s ease-in-out;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* ------------------------------------------------------------------------------------------ // buttons // */
+button {
+    border: none;
+    padding: .6rem 1rem;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: var(--light-gray) !important;
+    cursor: default;
+}
+
+button:focus {
+    outline: none;
+}
+
+button.primary {
+    background-color: var(--lapis-lazuli);
+    color: white;
+}
+
+button.primary:hover {
+    background-color: var(--blue);
+}
+
+button.danger {
+    background-color: var(--red-salsa);
+    color: white;
+}
+
+button.danger:hover {
+    background-color: var(--red);
+}
+
+/* ------------------------------------------------------------------------------------------ // ngForms // */ 
+
+.ng-valid:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px var(--blue);   
+}
+
+.ng-dirty.ng-invalid {
+    border-color: var(--red);
+    box-shadow: 0 0 0 2px var(--red);
+}
+
+.ng-dirty.ng-invalid:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px var(--blue);
+}
+
+.ng.dirty.ng-valid {
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px var(--green);
+}
+
+form.ng-invalid, form.ng-valid {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* ------------------------------------------------------------------------------------------ // animations // */ 
+
+.fadeIn {
+    animation: fadeIn .2s;
+}
+
+@keyframes fadeIn {
+    from {
+        filter: opacity(0);
+    }
+    to {
+        filter: opacity(1);
+    }
+}

@@ -1,0 +1,7 @@
+#toolbar {
+    background-color: var(--lapis-lazuli);
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 0 0 8px 1px var(--dark-gray);
+}

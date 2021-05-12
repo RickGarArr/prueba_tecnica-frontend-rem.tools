@@ -1,0 +1,14 @@
+<div id="form-page" class="fadeIn">
+    <div class="contenedor">
+        <div class="seccion">
+            <h2>Verificación de Cámara</h2>
+            <div class="contenedor-video">
+                <app-web-cam-div idVideo="video-verificaion" fileName="video-verificaion" (onRecordFinish)="getFileBlob($event)"></app-web-cam-div>
+            </div>
+            <div class="botones">
+                <button class="button danger" routerLink="/formulario">Paso Anterior</button>
+                <button class="button primary" routerLink="/firma">Paso Siguiente</button>
+            </div>
+        </div>
+    </div>
+</div>
