@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 // paginas
 import { PersonalDataFormComponent } from './pages/personal-data-form/form.component';
 import { CameraValidationComponent } from './pages/camera-validation/camera-validation.component';
-import { SignaturePadComponent } from './pages/signature-pad/signature-pad.component';
+import { SignaturePageComponent } from './pages/signature-pad/signature-page.component';
 // componentes
 import { ComponentsModule } from './components/components.module';
 import { DataService } from './services/data.service';
@@ -18,7 +18,7 @@ import { DataService } from './services/data.service';
     AppComponent,
     PersonalDataFormComponent,
     CameraValidationComponent,
-    SignaturePadComponent,
+    SignaturePageComponent,
   ],
   imports: [
     BrowserModule,

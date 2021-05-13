@@ -92,21 +92,23 @@ export class VideojsRecordComponent implements OnInit, OnDestroy {
       this.player = null;
     }
     this.playVideo(this.file);
-    this.onFileSelected.emit(this.file);
+    this.dataService.saveVideoVerification(this.file);
+    alert('video actualizado');
   }
 
   grabarDeNuevo() {
     this.videoElement.style.display = 'none';
     this.recordVideo();
     this.file = null;
-    this.onFileSelected.emit(this.file);
+    this.dataService.saveVideoVerification(this.file);
   }
 
   // use ngOnDestroy to detach event handlers and remove the player
   ngOnDestroy() {
-    if (this.player) this.player.dispose();
-    this.player.dispose();
-    this.player = null;
+    if (this.player) {
+      this.player.dispose();
+      this.player = null;
+    }
   }
 
 

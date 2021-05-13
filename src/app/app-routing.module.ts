@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { PagesGuard } from './guards/guards.guard';
 import { CameraValidationComponent } from './pages/camera-validation/camera-validation.component';
 import { PersonalDataFormComponent } from './pages/personal-data-form/form.component';
-import { SignaturePadComponent } from './pages/signature-pad/signature-pad.component';
+import { SignaturePageComponent } from './pages/signature-pad/signature-page.component';
 
 const routes: Routes = [
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'firma',
-    component: SignaturePadComponent,
+    component: SignaturePageComponent,
     canActivate: [ PagesGuard ]
   }
 ];

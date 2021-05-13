@@ -3,11 +3,11 @@
         <div class="seccion margin-bottom">
             <h2>Verificación de Cámara</h2>
             <div class="contenedor-video">
-                <app-videojs-record (onFileSelected)="fileSelected($event)"></app-videojs-record>
+                <app-videojs-record></app-videojs-record>
             </div>
             <div class="botones">
                 <button class="button danger" routerLink="/formulario">Paso Anterior</button>
-                <button class="button primary" routerLink="/firma" id="btn-next" [disabled]="!video" (click)="navegarAFirma()">Paso Siguiente</button>
+                <button class="button primary" routerLink="/firma" id="btn-next" [disabled]="!this.dataService.fileVideo">Paso Siguiente</button>
             </div>
         </div>
     </div>

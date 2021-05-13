@@ -1,0 +1,11 @@
+<div id="signature-pad" class="signature-pad">
+    <div class="contenedor-signature-pad">
+        <canvas id="signature-pad-canvas"></canvas>
+        <div class="contenedor-botones">
+            <button type="button" (click)="clearDataFuncion()" class="button danger" data-action="clear">Limpiar</button>
+            <button type="button" (click)="undoDataFunction()" class="button danger" data-action="undo">Deshacer</button>
+            <br>
+            <button type="button" (click)="savePNGFunction()" class="button primary" data-action="save-png">Elegir Firma</button>
+        </div>
+    </div>
+</div>

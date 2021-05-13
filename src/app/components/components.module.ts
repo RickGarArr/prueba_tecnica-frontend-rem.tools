@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { VideojsRecordComponent } from './videojs-record/videojs-record.component';
+import { SignaturePadComponent } from './signature-pad/signature-pad.component';
 
 @NgModule({
     imports: [
@@ -11,12 +12,14 @@ import { VideojsRecordComponent } from './videojs-record/videojs-record.componen
     declarations: [
         ProgressBarComponent,
         ToolbarComponent,
-        VideojsRecordComponent
+        VideojsRecordComponent,
+        SignaturePadComponent
     ],
     exports: [
         ProgressBarComponent,
         ToolbarComponent,
-        VideojsRecordComponent
+        VideojsRecordComponent,
+        SignaturePadComponent
     ]
 })
 export class ComponentsModule {}

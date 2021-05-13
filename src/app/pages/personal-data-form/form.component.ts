@@ -34,10 +34,8 @@ export class PersonalDataFormComponent implements OnInit {
   }
 
   registrarDatosPersonales() {
-    this.dataService.savePersonalData(this.personalDataForm.value).then(() => {
-      document.getElementsByClassName('paso').item(0).classList.add('success');
-      this.router.navigate(['camara']);
-    });
+    this.dataService.savePersonalData(this.personalDataForm.value);
+    this.router.navigate(['/camara']);
   }
 
 }

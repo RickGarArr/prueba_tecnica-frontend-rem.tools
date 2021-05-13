@@ -12,7 +12,7 @@ export class PagesGuard implements CanActivate {
 
   }
 
-  canActivate({ url: [index] }: ActivatedRouteSnapshot): boolean {
+  canActivate({ url: [index] }: ActivatedRouteSnapshot): boolean {    
     let valorAEvaluar = null;
     switch (index.path) {
       case 'camara':
@@ -22,8 +22,6 @@ export class PagesGuard implements CanActivate {
         valorAEvaluar = this.dataService.fileVideo;
         break;
     }
-    
-    console.log(valorAEvaluar);
     
     if (!valorAEvaluar) {
       switch (index.path) {
