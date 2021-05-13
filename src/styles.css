@@ -1,6 +1,7 @@
 :root {
     --blue: #0275d8;
     --green: #22bb33;
+    --dark-green: #178023;
     --red: #FF3333;
     --red-salsa: #b32828;
     --apple: #61c95e;
@@ -55,6 +56,8 @@ input {
 
 input:focus {
     outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px var(--blue);
 }
 
 /* ------------------------------------------------------------------------------------------ // buttons // */
@@ -90,6 +93,15 @@ button.danger {
 
 button.danger:hover {
     background-color: var(--red);
+}
+
+button.success {
+    color: white;
+    background-color: var(--dark-green);
+}
+
+button.success:hover {
+    background-color: var(--green);
 }
 
 /* ------------------------------------------------------------------------------------------ // ngForms // */ 

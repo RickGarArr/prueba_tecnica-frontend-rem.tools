@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { WebCamDivComponent } from './web-cam-div/web-cam-div.component';
+import { VideojsRecordComponent } from './videojs-record/videojs-record.component';
 
 @NgModule({
     imports: [
@@ -11,12 +11,12 @@ import { WebCamDivComponent } from './web-cam-div/web-cam-div.component';
     declarations: [
         ProgressBarComponent,
         ToolbarComponent,
-        WebCamDivComponent
+        VideojsRecordComponent
     ],
     exports: [
         ProgressBarComponent,
         ToolbarComponent,
-        WebCamDivComponent
+        VideojsRecordComponent
     ]
 })
 export class ComponentsModule {}

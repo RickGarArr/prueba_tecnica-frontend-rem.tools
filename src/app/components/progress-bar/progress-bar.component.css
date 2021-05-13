@@ -10,7 +10,6 @@
 .progress-bar-content {
     max-width: 520px;
     margin: 0 auto;
-    padding: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

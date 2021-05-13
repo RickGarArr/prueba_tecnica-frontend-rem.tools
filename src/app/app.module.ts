@@ -10,6 +10,7 @@ import { CameraValidationComponent } from './pages/camera-validation/camera-vali
 import { SignaturePadComponent } from './pages/signature-pad/signature-pad.component';
 // componentes
 import { ComponentsModule } from './components/components.module';
+import { DataService } from './services/data.service';
 // librerias
 
 @NgModule({
@@ -26,7 +27,7 @@ import { ComponentsModule } from './components/components.module';
     HttpClientModule,
     ComponentsModule
   ],
-  providers: [],
+  providers: [ DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

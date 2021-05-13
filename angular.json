@@ -29,7 +29,7 @@
               "node_modules/videojs-record/dist/css/videojs.record.min.css"
             ],
             "scripts": [
-              
+              "node_modules/@ffmpeg/ffmpeg/dist/ffmpeg.min.js"
             ]
           },
           "configurations": {

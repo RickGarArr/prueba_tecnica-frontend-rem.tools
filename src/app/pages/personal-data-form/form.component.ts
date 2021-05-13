@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 const { required, minLength, maxLength, pattern} = Validators;
 import * as moment from 'moment';
 import { IPersonalData } from 'src/app/interfaces/IPersonalData';
-import { DataService } from 'src/app/services/save-data.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-form',
@@ -28,10 +28,9 @@ export class PersonalDataFormComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById('fecha-nacimiento').setAttribute("max", `${moment().format('yyyy-MM-DD')}`);
-    this.dataService.getPersonalData().then( (personalData: IPersonalData) => {
-      document.getElementsByClassName('paso').item(0).classList.add('success');
-      this.personalDataForm.setValue(personalData);
-    });
+    if (this.dataService.personalData) {
+      this.personalDataForm.setValue(this.dataService.personalData);
+    }
   }
 
   registrarDatosPersonales() {

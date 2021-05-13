@@ -1,0 +1,36 @@
+.webcam-div {
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+video {
+    object-fit: contain;
+    width: 640px;
+    height: 360px;
+}
+
+.contenedor-video {
+    position: relative;
+    width: 640px;
+    height: 360px;
+    background-color: var(--gray);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.contenedor-botones {
+    position: absolute;
+    left: 100%;
+    margin-left: 1rem;
+    top: 0;
+    width: 120px;
+}
+
+.contenedor-botones button {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+}

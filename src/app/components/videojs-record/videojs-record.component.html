@@ -1,0 +1,12 @@
+<div class="contenedor">
+    <div class="seccion">
+        <div class="contenedor-video" id="contenedor-video">
+            <!-- <video id="video_record" class="video-js vjs-default-skin" playsinline></video> -->
+            <video id="saved-video" class="video" playsinline></video>
+            <div class="contenedor-botones">
+                <button (click)="seleccionrVideo()" class="button success" [disabled]="!file">Seleccionar Video</button>
+                <button (click)="grabarDeNuevo()" class="button primary" [disabled]="!this.dataService.fileVideo">Grabar de Nuevo</button>
+            </div>
+        </div>
+    </div>
+</div>
