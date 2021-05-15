@@ -47,7 +47,7 @@ export class DataFormComponent implements OnInit {
   }
 
   async eliminarDatosPersonales() {
-    this.alertService.showDangerService('Eliminar datos?', (result) => {
+    this.alertService.showDangerAlert('Eliminar datos?').then(result => {
       if (result) {
         this.personalDataForm.setValue({
           nombre: '',

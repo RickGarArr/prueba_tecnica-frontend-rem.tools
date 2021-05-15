@@ -112,8 +112,8 @@ export class SignaturePadComponent implements OnInit {
   }
 
   eliminarFirma() {
-    this.alertService.showDangerService('Eliminar Firma?', (result) => {
-      if (result) {
+    this.alertService.showDangerAlert('Eliminar Firma?').then(result => {
+      if (result.isConfirmed) {
         this.dataService.firmaBlob = null;
         this.dataService.hayFirma = false;
         this.dataService.isFirmaPNG = false;

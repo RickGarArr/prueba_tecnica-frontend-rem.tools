@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url: 'http://localhost:5000'
+  base_url: 'https://rem-tools-backend.herokuapp.com'
 };

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { DataService } from 'src/app/services/data.service';
 import { ServerService } from 'src/app/services/server.service';
+import Sweet from 'sweetalert2';
 
 @Component({
   selector: 'app-inicio',

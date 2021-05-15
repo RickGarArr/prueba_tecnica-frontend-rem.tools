@@ -99,8 +99,8 @@ export class VideojsRecordComponent implements OnInit, OnDestroy {
   }
 
   grabarDeNuevo() {
-    this.alertService.showDangerService('Eliminar video Anterior?', (result) => {
-      if(result) {
+    this.alertService.showDangerAlert('Eliminar video Anterior?').then(result => {
+      if(result.isConfirmed) {
         this.videoElement.style.display = 'none';
         this.recordVideo();
         this.file = null;

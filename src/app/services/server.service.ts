@@ -5,41 +5,50 @@ import { tap } from 'rxjs/operators';
 import signaturePad from 'signature_pad';
 import { DataService } from './data.service';
 import { IPersonalData } from '../interfaces/IPersonalData';
+import { environment } from 'src/environments/environment';
+import { AlertsService } from './alerts.service';
+
+const base_url = environment.base_url;
 
 @Injectable({
     providedIn: 'root'
 })
 export class ServerService {
-    private base_url = 'http://localhost:5000';
     public _token: string;
     public _uuid: string;
     public isUpdate = false;
-    constructor(private http: HttpClient, private dataService: DataService) {
+    constructor(private http: HttpClient, private dataService: DataService, private alertService: AlertsService) {
     }
 
     public iniciarFlujo() {
-        return this.http.get(`${this.base_url}/flujos/crear`).pipe(
+        return this.http.get(`${base_url}/flujos/crear`).pipe(
             tap(({ token, uuid }: IResponseIniciarFlujo) => {
                 this._token = token;
                 this._uuid = uuid;
             }, ({ error }: HttpErrorResponse) => {
-                console.log(error);
+                this.alertService.showErrorAlert('Ha ocurrido un error al iniciar flujo');
             })
         );
     }
 
     public obtenerFlujo(uuid: string) {
-        return this.http.get(`${this.base_url}/flujos/${uuid}`).pipe(
+        this.alertService.showLoadingAlert('Cargando informacion del flujo');
+        return this.http.get(`${base_url}/flujos/${uuid}`).pipe(
             tap(({ token, flujo }: IResponseObtenerFlujo) => {
                 const { firma, video, uuid, ...personalData } = flujo;
                 this._token = token;
                 this._uuid = uuid;
-                this.getVideoFile(video);
-                this.getFirmaFile(firma);
                 this.dataService.savePersonalData(personalData);
+                const asyncFunction = async () => {
+                    await this.getVideoFile(video);
+                    await this.getFirmaFile(firma);
+                    this.alertService.closeAlert();
+                }
+                asyncFunction();
                 this.isUpdate = true;
             }, ({ error }: HttpErrorResponse) => {
-                console.log(error);
+                this.alertService.closeAlert();
+                this.alertService.showErrorAlert(error.errores[0]);
             })
         );
     }
@@ -52,14 +61,16 @@ export class ServerService {
         
         formData.append('firma', this.dataService.firmaBlob, 'firma.png');
         formData.append('video', this.dataService.fileVideo, (this.dataService.fileVideo as File).name);
-        if (!this.isUpdate) {
-            return this.http.post(`${this.base_url}/flujos/finalizar/${this._uuid}`, formData, {
+        if (this.isUpdate) {
+            console.log('update');
+            return this.http.put(`${base_url}/flujos/editar/${this._uuid}`, formData, {
                 headers: {
                     'x-token': this._token
                 }
             });
         } else {
-            return this.http.put(`${this.base_url}/flujos/editar/${this._uuid}`, formData, {
+            console.log('finalizar');
+            return this.http.post(`${base_url}/flujos/finalizar/${this._uuid}`, formData, {
                 headers: {
                     'x-token': this._token
                 }
@@ -68,35 +79,41 @@ export class ServerService {
     }
 
     public getVideoFile(filename: string) {
-        this.http.get(`${this.base_url}/flujos/${this._uuid}/${filename}`, {
-            responseType: 'blob',
-            headers: {
-                'x-token': this._token
-            }
-        }).subscribe((response: Blob) => {
-            this.dataService.saveVideoVerification(this.dataService.blobToFile(response, 'video.mkv'));
-        }, error => {
-            console.log(error);
+        return new Promise<void>((resolve) => {
+            this.http.get(`${base_url}/flujos/${this._uuid}/${filename}`, {
+                responseType: 'blob',
+                headers: {
+                    'x-token': this._token
+                }
+            }).subscribe((response: Blob) => {
+                this.dataService.saveVideoVerification(this.dataService.blobToFile(response, 'video.mkv'));
+                resolve();
+            }, error => {
+                resolve();
+            });
         });
     }
 
     public getFirmaFile(filename: string) {
-        this.http.get(`${this.base_url}/flujos/${this._uuid}/${filename}`, {
-            responseType: 'blob',
-            headers: {
-                'x-token': this._token
-            }
-        }).subscribe((response: Blob) => {
-            this.dataService.isFirmaPNG = true;
-            this.dataService.hayFirma = true;
-            this.dataService.firmaBlob = this.dataService.blobToFile(response, 'firma.png');
-        }, error => {
-            console.log(error);
+        return new Promise<void>((resolve) => {
+            this.http.get(`${base_url}/flujos/${this._uuid}/${filename}`, {
+                responseType: 'blob',
+                headers: {
+                    'x-token': this._token
+                }
+            }).subscribe((response: Blob) => {
+                this.dataService.isFirmaPNG = true;
+                this.dataService.hayFirma = true;
+                this.dataService.firmaBlob = this.dataService.blobToFile(response, 'firma.png');
+                resolve();
+            }, error => {
+                resolve();
+            });
         });
     }
 
     public deleteFlujo() {
-        return this.http.delete(`${this.base_url}/flujos/eliminar/${this._uuid}`, {
+        return this.http.delete(`${base_url}/flujos/eliminar/${this._uuid}`, {
             headers: {
                 'x-token': this._token
             }

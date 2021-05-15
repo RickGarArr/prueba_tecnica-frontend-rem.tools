@@ -17,12 +17,12 @@ export class ToolbarComponent implements OnInit {
   }
 
   eliminarFlujo() {
-    this.alertService.showDangerService('Está Seguro?', (result) => {
-      if(result) {
-        this.serverSerice.deleteFlujo().subscribe(({msg}: {msg: string}) => {
+    this.alertService.showDangerAlert('Está Seguro?').then(result => {
+      if (result.isConfirmed) {
+        this.serverSerice.deleteFlujo().subscribe(({ msg }: { msg: string }) => {
           this.alertService.showMessageAlert(msg);
           this.router.navigate(['/inicio']);
-        })
+        });
       }
     });
   }
