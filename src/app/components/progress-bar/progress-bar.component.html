@@ -1,7 +1,7 @@
 <div id="progress-bar">
     <div class="seccion">
         <div class="contenedor">
-            <div class="progress-bar-content">
+            <div *ngIf="!this.router.isActive('inicio', false)" class="progress-bar-content">
                 <div class="paso" [ngClass]="{'success': this.dataService.personalData}"><span>1</span></div>
                 <div class="paso" [ngClass]="{'success': this.dataService.fileVideo}"><span>2</span></div>
                 <div class="paso" [ngClass]="{'success': this.dataService.hayFirma}"><span>3</span></div>

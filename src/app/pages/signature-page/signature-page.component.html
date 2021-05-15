@@ -7,7 +7,7 @@
             </div>
             <div class="botones">
                 <button class="button danger" routerLink="/camara">Paso Anterior</button>
-                <button class="button primary" routerLink="/firma" >Paso Siguiente</button>
+                <button class="button primary" [disabled]="!this.dataService.hayFirma" (click)="enviarData()">Finalizar Flujo</button>
             </div>
         </div>
     </div>

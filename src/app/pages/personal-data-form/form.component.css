@@ -21,23 +21,6 @@
     margin-bottom: 1rem;
 }
 
-.group-control > * {
-    display: block;
-}
-
-.group-control label {
-    font-weight: 700;
-    color: black;
-    text-transform: capitalize;
-}
-
-.group-control input {
-    width: 100%;
-    padding: .4rem 1rem;
-    border: 1px solid var(--gray);
-    border-radius: 5px;
-}
-
 /* ------------------------------------------------------------------------------------------ // botton // */ 
 
 .botton {

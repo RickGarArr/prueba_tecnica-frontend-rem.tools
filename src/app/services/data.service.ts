@@ -10,32 +10,17 @@ export class DataService {
     private _personalData: IPersonalData = null;
     private _videoFile: Blob = null;
     private _firma: PointGroup[] = [];
+    private _firmaBlob: Blob = null;
     public hayFirma = false;
+    public isFirmaPNG = false;
 
     constructor() {
-        // this.getPersonalData();
+
     }
 
     public savePersonalData(personalData: IPersonalData) {
         this._personalData = personalData;
-        // return new Promise<void>((resolve, reject) => {
-        //     try {
-        //         localStorage.setItem('personal-data', JSON.stringify(personalData));
-        //         resolve();
-        //     } catch (error) {
-        //         reject(error);
-        //     }
-        // });
     }
-
-    // private get personalData() {
-    //     try {
-    //         this._personalData = JSON.parse(localStorage.getItem('personal-data'));
-    //     } catch (error) {
-    //         this._personalData = null;
-    //         console.log(error);
-    //     }
-    // }
 
     public get personalData() {
         return this._personalData;
@@ -58,13 +43,30 @@ export class DataService {
         return this._firma;
     }
 
-    private blobToFile = (theBlob: Blob, fileName:string): File => {
+    public set firmaBlob(firma: Blob) {
+        this._firmaBlob = firma;
+    }
+
+    public get firmaBlob(): Blob {
+        return this._firmaBlob;
+    }
+
+    public blobToFile = (theBlob: Blob, fileName: string): File => {
         const b: any = theBlob;
         //A Blob() is almost a File() - it's just missing the two properties below which we will add
         b.lastModifiedDate = new Date();
         b.name = fileName;
-    
+
         //Cast to a File() type
-        return <File>b;
+        return <File>theBlob;
+    }
+
+    public restoreService() {
+        this._personalData = null;
+        this._videoFile = null;
+        this._firma = [];
+        this._firmaBlob = null;
+        this.hayFirma = false;
+        this.isFirmaPNG = false;
     }
 }

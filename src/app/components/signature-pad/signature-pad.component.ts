@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import SignaturePad from 'signature_pad';
 import { DataService } from 'src/app/services/data.service';
 
@@ -10,17 +11,20 @@ import { DataService } from 'src/app/services/data.service';
 export class SignaturePadComponent implements OnInit {
 
   private signaturePad: SignaturePad;
+  private imageContainer: HTMLImageElement;
+  public image: any;
 
   // private wrapper;
   private canvas: HTMLCanvasElement;
 
-  constructor(private dataService: DataService) {
+  constructor(public dataService: DataService, private sanitizer: DomSanitizer) {
     window.onresize = this.resizeCanvas;
   }
 
   ngOnInit(): void {
     // this.wrapper = document.getElementById("signature-pad");
     this.canvas = document.getElementById('signature-pad-canvas') as HTMLCanvasElement;
+    this.imageContainer = document.getElementById('firma-image') as HTMLImageElement;
     this.canvas.width = 640;
     this.canvas.height = 360;
     this.signaturePad = new SignaturePad(this.canvas, {
@@ -28,7 +32,14 @@ export class SignaturePadComponent implements OnInit {
       // this option can be omitted if only saving as PNG or SVG
       backgroundColor: 'rgb(255, 255, 255)',
     });
-    if (this.dataService.firma) this.signaturePad.fromData(this.dataService.firma);
+    if (this.dataService.firma && !this.dataService.isFirmaPNG) {
+      this.signaturePad.fromData(this.dataService.firma);
+    } else if (this.dataService.firma && this.dataService.isFirmaPNG) {
+      this.canvas.style.display = 'none';
+      this.imageContainer.style.display = 'block';
+      let objectURL = URL.createObjectURL(this.dataService.firmaBlob);       
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    }
   }
 
   resizeCanvas() {
@@ -65,6 +76,7 @@ export class SignaturePadComponent implements OnInit {
 
   saveData(filename) {
     this.dataService.saveFirma(this.signaturePad.toData(), filename);
+    this.dataService.firmaBlob = this.dataURLToBlob(this.signaturePad.toDataURL());
     alert('Firma Actualizada');
   }
 
@@ -96,6 +108,14 @@ export class SignaturePadComponent implements OnInit {
       data.pop(); // remove the last dot or line
       this.signaturePad.fromData(data);
     }
+  }
+
+  eliminarFirma() {
+    this.dataService.firmaBlob = null;
+    this.dataService.hayFirma = false;
+    this.dataService.isFirmaPNG = false;
+    this.canvas.style.display = 'block';
+    this.imageContainer.style.display = 'none';
   }
 
   changeColorFunction() {

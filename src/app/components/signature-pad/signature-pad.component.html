@@ -1,9 +1,11 @@
 <div id="signature-pad" class="signature-pad">
     <div class="contenedor-signature-pad">
         <canvas id="signature-pad-canvas"></canvas>
+        <img id="firma-image" [src]="this.image" alt="imagen firma" style="display: none;">
         <div class="contenedor-botones">
             <button type="button" (click)="clearDataFuncion()" class="button danger" data-action="clear">Limpiar</button>
             <button type="button" (click)="undoDataFunction()" class="button danger" data-action="undo">Deshacer</button>
+            <button type="button" (click)="eliminarFirma()" class="button danger" data-action="undo">EliminarFirma</button>
             <br>
             <button type="button" (click)="savePNGFunction()" class="button primary" data-action="save-png">Elegir Firma</button>
         </div>

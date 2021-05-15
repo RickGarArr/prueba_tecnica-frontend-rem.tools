@@ -30,6 +30,7 @@
                     <input placeholder="Telefono" type="text" id="telefono" formControlName="telefono">
                 </div>
                 <div class="botton">
+                    <button class="button danger" routerLink="/inicio" (click)="cancelar()">Cancelar</button>
                     <button type="button" class="registrar" [disabled]="personalDataForm.invalid" (click)="registrarDatosPersonales()">
                         Paso Siguiente
                     </button>

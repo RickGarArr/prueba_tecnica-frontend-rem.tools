@@ -1,0 +1,19 @@
+#inicio-page {
+    width: 320px;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.opcion {
+    padding: 1.6rem;
+}
+
+button {
+    margin-top: .8rem;
+    width: 100%;
+}
+
+.opcion h4 {
+    text-align: center;
+    text-transform: capitalize;
+}

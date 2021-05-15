@@ -29,8 +29,7 @@
               "node_modules/videojs-record/dist/css/videojs.record.min.css"
             ],
             "scripts": [
-              "node_modules/@ffmpeg/ffmpeg/dist/ffmpeg.min.js",
-              "node_modules/signature_pad/dist/signature_pad.min.js"
+              
             ]
           },
           "configurations": {

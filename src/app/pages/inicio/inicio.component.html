@@ -1,0 +1,21 @@
+<div id="inicio-page" class="fadeIn">
+    <div class="contenedor">
+        <div class="seccion">
+            <h2>Inicio</h2>
+            <div class="opcion">
+                <h4>iniciar un nuevo flujo</h4>
+                <button class="button w-100 success" (click)="iniciarFlujo()">Iniciar</button>
+            </div>
+            <div class="opcion">
+                <h4>editar un flujo</h4>
+                <input type="text" placeholder="ID" [(ngModel)]="uuid">
+                <button class="button w-100 primary" (click)="editarFlujo()">Editar</button>
+            </div>
+            <div class="opcion">
+                <h4>Eliminar un flujo</h4>
+                <input type="text" placeholder="ID">
+                <button class="button w-100 danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

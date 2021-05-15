@@ -5,6 +5,7 @@ const { required, minLength, maxLength, pattern} = Validators;
 import * as moment from 'moment';
 import { IPersonalData } from 'src/app/interfaces/IPersonalData';
 import { DataService } from 'src/app/services/data.service';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
   selector: 'app-form',
@@ -15,7 +16,7 @@ export class PersonalDataFormComponent implements OnInit {
 
   personalDataForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private dataService: DataService) {
+  constructor(private fb: FormBuilder, private router: Router, private dataService: DataService, private serverService: ServerService) {
     this.personalDataForm = this.fb.group({
       nombre: new FormControl('', [required, minLength(2)]),
       apellidos: new FormControl('', [required, minLength(2)]),
@@ -36,6 +37,11 @@ export class PersonalDataFormComponent implements OnInit {
   registrarDatosPersonales() {
     this.dataService.savePersonalData(this.personalDataForm.value);
     this.router.navigate(['/camara']);
+  }
+
+  cancelar() {
+    this.dataService.restoreService();
+    this.serverService.restoreService();
   }
 
 }
