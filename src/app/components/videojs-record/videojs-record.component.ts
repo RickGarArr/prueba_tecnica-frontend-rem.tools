@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef, EventEmitter, Output } from '@angular/core';
+import { AlertsService } from 'src/app/services/alerts.service';
 import { DataService } from 'src/app/services/data.service';
 
 import videojs from 'video.js';
@@ -40,7 +41,7 @@ export class VideojsRecordComponent implements OnInit, OnDestroy {
   private player: any;
   private plugin: any;
 
-  constructor(public dataService: DataService) {
+  constructor(public dataService: DataService, private alertService: AlertsService) {
     this.plugin = Record;
   }
 
@@ -93,14 +94,19 @@ export class VideojsRecordComponent implements OnInit, OnDestroy {
     }
     this.playVideo(this.file);
     this.dataService.saveVideoVerification(this.file);
-    alert('video actualizado');
+    
+    this.alertService.showSuccessAlert('Video Guardado Correctamente');
   }
 
   grabarDeNuevo() {
-    this.videoElement.style.display = 'none';
-    this.recordVideo();
-    this.file = null;
-    this.dataService.saveVideoVerification(this.file);
+    this.alertService.showDangerService('Eliminar video Anterior?', (result) => {
+      if(result) {
+        this.videoElement.style.display = 'none';
+        this.recordVideo();
+        this.file = null;
+        this.dataService.saveVideoVerification(this.file);
+      }
+    });
   }
 
   // use ngOnDestroy to detach event handlers and remove the player

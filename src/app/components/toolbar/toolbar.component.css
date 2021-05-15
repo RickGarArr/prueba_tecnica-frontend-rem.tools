@@ -1,7 +1,15 @@
 #toolbar {
+    position: relative;
     background-color: var(--lapis-lazuli);
     color: white;
     text-align: center;
     font-weight: 700;
     box-shadow: 0 0 8px 1px var(--dark-gray);
+}
+
+.button.danger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1.6rem;
 }

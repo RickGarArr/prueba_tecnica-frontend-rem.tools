@@ -1,0 +1,34 @@
+<div class="contenedor-formulario">
+    <form [formGroup]="personalDataForm" id="formulario">
+        <div class="nombre-apellidos">
+            <div class="group-control">
+                <label for="nombre">nombre</label>
+                <input placeholder="Nombre" type="text" id="nombre" formControlName="nombre">
+            </div>
+            <div class="group-control">
+                <label for="apellidos">apellidos</label>
+                <input placeholder="Apellidos" type="text" id="apellidos" formControlName="apellidos">
+            </div>
+        </div>
+        <div class="group-control">
+            <label for="fecha-nacimiento">fecha de nacimiento</label>
+            <input type="date" min="1950-01-01" id="fecha-nacimiento" formControlName="fecha_nacimiento">
+        </div>
+        <div class="group-control">
+            <label for="lugar-nacimiento">lugar nacimiento</label>
+            <input placeholder="Lugar de Nacimiento" type="text" id="lugar-nacimiento" formControlName="lugar_nacimiento">
+        </div>
+        <div class="group-control">
+            <label for="email">email</label>
+            <input placeholder="Email" type="text" id="email" formControlName="email">
+        </div>
+        <div class="group-control">
+            <label for="telefono">telefono</label>
+            <input placeholder="Telefono" type="text" id="telefono" formControlName="telefono">
+        </div>
+    </form>
+    <div class="contenedor-botones">
+        <button class="button success" [disabled]="this.personalDataForm.invalid" (click)="registrarDatosPersonales()">Guardar Informacion</button>
+        <button class="button primary" [disabled]="!this.dataService.personalData" (click)="eliminarDatosPersonales()">Limpiar Informacion</button>
+    </div>
+</div>

@@ -1,40 +1,7 @@
-#formulario {
+.botones {
     width: 480px;
     margin: 0 auto;
-    margin-top: 1.6rem;
-}
-
-.nombre-apellidos {
     display: flex;
     justify-content: space-between;
-}
-
-.nombre-apellidos > *:first-child {
-    flex: 0 0 calc(33% - 0.8rem);
-}
-
-.nombre-apellidos > *:last-child{
-    flex: 0 0 calc(66% - 0.8rem);
-}
-
-.group-control {
-    margin-bottom: 1rem;
-}
-
-/* ------------------------------------------------------------------------------------------ // botton // */ 
-
-.botton {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-end;
-    margin-top: 1.6rem;
-}
- 
-button.registrar {
-    background-color: var(--yale-blue);
-    color: white;
-}
-
-button.registrar:hover {
-    background-color: var(--blue);
+    margin-top: 2rem;
 }

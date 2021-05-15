@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import SignaturePad from 'signature_pad';
+import { AlertsService } from 'src/app/services/alerts.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class SignaturePadComponent implements OnInit {
   // private wrapper;
   private canvas: HTMLCanvasElement;
 
-  constructor(public dataService: DataService, private sanitizer: DomSanitizer) {
+  constructor(public dataService: DataService, private sanitizer: DomSanitizer, private alertService: AlertsService) {
     window.onresize = this.resizeCanvas;
   }
 
@@ -77,7 +78,7 @@ export class SignaturePadComponent implements OnInit {
   saveData(filename) {
     this.dataService.saveFirma(this.signaturePad.toData(), filename);
     this.dataService.firmaBlob = this.dataURLToBlob(this.signaturePad.toDataURL());
-    alert('Firma Actualizada');
+    this.alertService.showSuccessAlert('Firma Guardada Correctamente');
   }
 
   // One could simply use Canvas#toBlob method instead, but it's just to show
@@ -111,11 +112,15 @@ export class SignaturePadComponent implements OnInit {
   }
 
   eliminarFirma() {
-    this.dataService.firmaBlob = null;
-    this.dataService.hayFirma = false;
-    this.dataService.isFirmaPNG = false;
-    this.canvas.style.display = 'block';
-    this.imageContainer.style.display = 'none';
+    this.alertService.showDangerService('Eliminar Firma?', (result) => {
+      if (result) {
+        this.dataService.firmaBlob = null;
+        this.dataService.hayFirma = false;
+        this.dataService.isFirmaPNG = false;
+        this.canvas.style.display = 'block';
+        this.imageContainer.style.display = 'none';
+      }
+    })
   }
 
   changeColorFunction() {

@@ -3,5 +3,7 @@
         <div class="seccion">
             rem.tools.com
         </div>
+        <button class="button danger" *ngIf="!this.serverSerice.isUpdate === null || this.serverSerice.isUpdate" (click)="eliminarFlujo()">Eliminar Flujo</button>
+        <!-- *ngIf="!this.serverSerice.isUpdate === null || this.serverSerice.isUpdate" -->
     </div>
 </div>

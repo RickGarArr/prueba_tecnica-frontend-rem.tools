@@ -95,6 +95,14 @@ export class ServerService {
         });
     }
 
+    public deleteFlujo() {
+        return this.http.delete(`${this.base_url}/flujos/eliminar/${this._uuid}`, {
+            headers: {
+                'x-token': this._token
+            }
+        });
+    }
+
     public restoreService() {
         this.isUpdate = false;
     }
